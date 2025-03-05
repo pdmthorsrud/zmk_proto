@@ -1,0 +1,9 @@
+file_format: "1"
+id: proto
+name: Proto Board
+type: shield
+requires: [nice_nano_v2]
+siblings:
+  - proto_left
+  - proto_right
+
