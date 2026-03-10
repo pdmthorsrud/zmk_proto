@@ -23,6 +23,7 @@ zephyr_syscall_header(${APPLICATION_SOURCE_DIR}/include/drivers/ext_power.h)
 # Add your source file to the "app" target. This must come after
 # find_package(Zephyr) which defines the target.
 target_include_directories(app PRIVATE include)
+add_subdirectory(src/boot)
 target_sources(app PRIVATE src/stdlib.c)
 target_sources(app PRIVATE src/activity.c)
 target_sources(app PRIVATE src/behavior.c)
@@ -96,7 +97,7 @@ target_sources_ifdef(CONFIG_ZMK_BATTERY_REPORTING app PRIVATE src/battery.c)
 target_sources_ifdef(CONFIG_ZMK_HID_INDICATORS app PRIVATE src/events/hid_indicators_changed.c)
 
 target_sources_ifdef(CONFIG_ZMK_SPLIT app PRIVATE src/events/split_peripheral_status_changed.c)
-add_subdirectory(src/split)
+add_subdirectory_ifdef(CONFIG_ZMK_SPLIT src/split)
 
 target_sources_ifdef(CONFIG_USB_DEVICE_STACK app PRIVATE src/usb.c)
 target_sources_ifdef(CONFIG_ZMK_USB app PRIVATE src/usb_hid.c)
